@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "泡泡猫 DSH 插件合集 — 一条命令装好全部精选插件，新手开箱即用。 / Paopaocat DSH plugin suite — install all curated plugins with one command.",
   "type": "module",
+  "main": "lib/index.js",
   "license": "MIT",
   "author": "paopaocat",
   "homepage": "https://github.com/zmm863-commits/dsh-paopaocat-suite",
