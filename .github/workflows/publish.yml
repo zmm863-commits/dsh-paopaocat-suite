@@ -7,11 +7,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish-suite:
+  publish:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,9 +21,6 @@ jobs:
           node-version: '22.23.2'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Upgrade npm
-        run: npm install -g npm@11
-
       - name: Install pnpm
         run: npm install -g pnpm
 
@@ -33,17 +29,17 @@ jobs:
 
       - name: Publish welcome
         working-directory: packages/welcome
-        run: |
-          unset NODE_AUTH_TOKEN
-          npm publish --access public
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish skin
         working-directory: packages/skin
-        run: |
-          unset NODE_AUTH_TOKEN
-          npm publish --access public
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish suite
-        run: |
-          unset NODE_AUTH_TOKEN
-          npm publish --access public
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
