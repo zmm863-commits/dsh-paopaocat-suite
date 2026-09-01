@@ -1,0 +1,49 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  publish-suite:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.2'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Upgrade npm
+        run: npm install -g npm@11
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Publish welcome
+        working-directory: packages/welcome
+        run: |
+          unset NODE_AUTH_TOKEN
+          npm publish --access public
+
+      - name: Publish skin
+        working-directory: packages/skin
+        run: |
+          unset NODE_AUTH_TOKEN
+          npm publish --access public
+
+      - name: Publish suite
+        run: |
+          unset NODE_AUTH_TOKEN
+          npm publish --access public
