@@ -1,0 +1,15 @@
+# 泡泡猫插件合集 — 统一挂载补丁
+# 一行命令安装全部精选插件
+- insert:
+    # 新手引导中心
+    - id: paopaocat-welcome
+      name: 'dsh-paopaocat-welcome'
+    # 泡泡猫皮肤
+    - id: paopaocat-skin
+      name: 'dsh-paopaocat-skin'
+    # 骰子大作战
+    - id: dice-game
+      name: 'dsh-dice-game'
+    # 文件上传回形针
+    - id: paperclip
+      name: 'dsh-paperclip'
